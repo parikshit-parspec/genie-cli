@@ -1,11 +1,14 @@
 import sqlite3
+import tempfile
 from datetime import datetime
 
 import pytz
 
+DB_PATH = tempfile.gettempdir() + "genie.db"
+
 
 def store_token(token: str):
-    con = sqlite3.connect("genie.db")
+    con = sqlite3.connect(DB_PATH)
 
     # Drop table "token" if it already exists
     con.execute("DROP TABLE IF EXISTS token;")
@@ -23,7 +26,7 @@ def store_token(token: str):
 
 
 def get_token():
-    con = sqlite3.connect("genie.db")
+    con = sqlite3.connect(DB_PATH)
 
     # Check that table "token" exists in db
     cur = con.execute(
