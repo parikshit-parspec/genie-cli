@@ -2,9 +2,7 @@ import json
 
 import typer
 
-import api
-import db
-from utils import is_token_expired
+from . import api, db, utils
 
 app = typer.Typer()
 
@@ -24,7 +22,7 @@ def list_apps():
     if err:
         print(f"Couldn't list apps: {err}\nDid you login?")
         return
-    if is_token_expired(valid_from):
+    if utils.is_token_expired(valid_from):
         print(f"Your session has expired, please login again!")
         return
     err, apps = api.list_apps(token)
@@ -40,7 +38,7 @@ def list_envs(app: str):
     if err:
         print(f"Couldn't list envs: {err}\nDid you login?")
         return
-    if is_token_expired(valid_from):
+    if utils.is_token_expired(valid_from):
         print(f"Your session has expired, please login again!")
         return
     err, envs = api.list_envs(token, app)
@@ -56,7 +54,7 @@ def display_env(app: str, tag: str):
     if err:
         print(f"Couldn't fetch env: {err}\nDid you login?")
         return
-    if is_token_expired(valid_from):
+    if utils.is_token_expired(valid_from):
         print(f"Your session has expired, please login again!")
         return
     err, text = api.display_env(token, app, tag)
@@ -72,7 +70,7 @@ def add_env(app: str, tag: str, file: str):
     if err:
         print(f"Couldn't add env: {err}\nDid you login?")
         return
-    if is_token_expired(valid_from):
+    if utils.is_token_expired(valid_from):
         print(f"Your session has expired, please login again!")
         return
     err = api.add_env(token, app, tag, file)
@@ -88,7 +86,7 @@ def delete_env(app: str, tag: str):
     if err:
         print(f"Couldn't delete env: {err}\nDid you login?")
         return
-    if is_token_expired(valid_from):
+    if utils.is_token_expired(valid_from):
         print(f"Your session has expired, please login again!")
         return
     err = api.delete_env(token, app, tag)
@@ -96,7 +94,3 @@ def delete_env(app: str, tag: str):
         print(f"Could not delete env: {err}")
         return
     print(f"Deleted env: {app}:{tag}")
-
-
-if __name__ == "__main__":
-    app()
