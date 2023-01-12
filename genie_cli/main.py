@@ -7,6 +7,13 @@ from . import api, db, utils
 app = typer.Typer()
 
 
+@app.callback()
+def callback():
+    """
+    Genie-Cli
+    """
+
+
 @app.command()
 def login(username: str, password: str):
     err, token = api.login(username, password)
