@@ -1,6 +1,17 @@
 # genie-cli
 A simple to use CLI for interacting with EnvGenie, since cURL is not so convenient.
 
+## Installation
+First, install `pipx`:
+```
+> brew install pipx
+```
+Then install `genie-cli` using `pipx`:
+```
+> pipx install git+https://github.com/parikshit-parspec/genie-cli.git
+```
+
+## Usage
 ```
 > genie-cli --help
 
