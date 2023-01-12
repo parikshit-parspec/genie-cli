@@ -1,0 +1,12 @@
+README.md
+setup.py
+genie-cli/__init__.py
+genie-cli/api.py
+genie-cli/db.py
+genie-cli/genie-cli.py
+genie-cli/utils.py
+genie_cli.egg-info/PKG-INFO
+genie_cli.egg-info/SOURCES.txt
+genie_cli.egg-info/dependency_links.txt
+genie_cli.egg-info/requires.txt
+genie_cli.egg-info/top_level.txt
