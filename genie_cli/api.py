@@ -56,3 +56,35 @@ def delete_env(token: str, app: str, tag: str):
     if response.status_code != requests.codes["OK"]:
         return response.status_code
     return False
+
+
+def list_users(token: str):
+    auth_header = {"Authorization": f"Bearer {token}"}
+    response = requests.get(GENIE_URL + "users", headers=auth_header)
+    if response.status_code != requests.codes["OK"]:
+        return response.status_code, ""
+    return False, response.json()
+
+
+def add_user(token: str, name: str, pwd: str, permissions: str):
+    auth_header = {"Authorization": f"Bearer {token}"}
+    payload = {
+        "pwd": pwd,
+        "get": True if permissions[0] == "g" else False,
+        "create": True if permissions[1] == "c" else False,
+        "delete": True if permissions[2] == "d" else False,
+    }
+    response = requests.post(
+        GENIE_URL + f"users/{name}", headers=auth_header, data=payload
+    )
+    if response.status_code != requests.codes["created"]:
+        return response.status_code
+    return False
+
+
+def delete_user(token: str, name: str):
+    auth_header = {"Authorization": f"Bearer {token}"}
+    response = requests.delete(GENIE_URL + f"users/{name}", headers=auth_header)
+    if response.status_code != requests.codes["OK"]:
+        return response.status_code
+    return False

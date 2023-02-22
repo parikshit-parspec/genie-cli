@@ -101,3 +101,51 @@ def delete_env(app: str, tag: str):
         print(f"Could not delete env: {err}")
         return
     print(f"Deleted env: {app}:{tag}")
+
+
+@app.command()
+def list_users():
+    err, token, valid_from = db.get_token()
+    if err:
+        print(f"Couldn't list users: {err}\nDid you login?")
+        return
+    if utils.is_token_expired(valid_from):
+        print(f"Your session has expired, please login again!")
+        return
+    err, users = api.list_users(token)
+    if err:
+        print(f"Could not fetch users: {err}")
+        return
+    print(json.dumps(users, indent=2))
+
+
+@app.command()
+def add_user(name: str, pwd: str, permissions: str):
+    err, token, valid_from = db.get_token()
+    if err:
+        print(f"Couldn't add user: {err}\nDid you login?")
+        return
+    if utils.is_token_expired(valid_from):
+        print(f"Your session has expired, please login again!")
+        return
+    err = api.add_user(token, name, pwd, permissions)
+    if err:
+        print(f"Could not add user: {err}")
+        return
+    print(f"Added user {name}.")
+
+
+@app.command()
+def delete_user(name: str):
+    err, token, valid_from = db.get_token()
+    if err:
+        print(f"Couldn't delete user: {err}\nDid you login?")
+        return
+    if utils.is_token_expired(valid_from):
+        print(f"Your session has expired, please login again!")
+        return
+    err = api.delete_user(token, name)
+    if err:
+        print(f"Could not delete user: {err}")
+        return
+    print(f"Deleted user {name}.")
