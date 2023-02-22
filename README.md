@@ -4,11 +4,11 @@ A simple to use CLI for interacting with EnvGenie, since cURL is not so convenie
 ## Installation
 First, install `pipx`:
 ```
-> brew install pipx
+brew install pipx
 ```
 Then install `genie-cli` using `pipx`:
 ```
-> pipx install git+https://github.com/parikshit-parspec/genie-cli.git
+pipx install git+https://github.com/parikshit-parspec/genie-cli.git
 ```
 
 ## Usage
@@ -25,10 +25,13 @@ Then install `genie-cli` using `pipx`:
 ╰──────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ───────────────────────────────────────────────────────────────────╮
 │ add-env                                                                      │
+│ add-user                                                                     │
 │ delete-env                                                                   │
+│ delete-user                                                                  │
 │ display-env                                                                  │
 │ list-apps                                                                    │
 │ list-envs                                                                    │
+│ list-users                                                                   │
 │ login                                                                        │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
