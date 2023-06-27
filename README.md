@@ -11,6 +11,11 @@ Then install `genie-cli` using `pipx`:
 pipx install git+https://github.com/parikshit-parspec/genie-cli.git
 ```
 
+You can update an existing installation like so:
+```
+pipx install git+https://github.com/parikshit-parspec/genie-cli.git --force
+```
+
 ## Usage
 ```
 > genie-cli --help
