@@ -3,7 +3,7 @@ from typing import Annotated
 
 import typer
 
-import api, db, utils
+from genie_cli import api, db, utils
 
 app = typer.Typer()
 
