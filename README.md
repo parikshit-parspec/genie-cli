@@ -39,22 +39,18 @@ pipx install git+https://github.com/parikshit-parspec/genie-cli.git
 
 ## Development
 ```
-genie-cli> poetry shell
-Spawning shell within /Users/parikshit/Library/Caches/pypoetry/virtualenvs/genie-cli-mH-6lwpY-py3.11
-genie-cli> emulate bash -c '. /Users/parikshit/Library/Caches/pypoetry/virtualen
-vs/genie-cli-mH-6lwpY-py3.11/bin/activate'
-(genie-cli-py3.11) genie-cli> poetry install
+genie-cli> cd genie_cli
+genie_cli> poetry install
 Installing dependencies from lock file
 
 No dependencies to install or update
 
 Installing the current project: genie-cli (1.0.1)
-(genie-cli-py3.11) genie-cli> genie-cli
+genie_cli> poetry run genie-cli
 Usage: genie-cli [OPTIONS] COMMAND [ARGS]...
 Try 'genie-cli --help' for help.
-╭─ Error ──────────────────────────────────────────────────────────────────────╮
-│ Missing command.                                                             │
-╰──────────────────────────────────────────────────────────────────────────────╯
-(genie-cli-py3.11) genie-cli> exit
-genie-cli>
+╭─ Error ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Missing command.                                                                                           │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+genie_cli>
 ```
