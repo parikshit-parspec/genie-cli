@@ -158,3 +158,8 @@ def delete_user(name: str):
         print(f"Could not delete user: {err}")
         return
     print(f"Deleted user {name}.")
+
+
+@app.command()
+def version():
+    print(f"Genie-Cli v{utils.get_version()}")
