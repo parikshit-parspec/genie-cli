@@ -1,4 +1,5 @@
 genie.db
 .vscode
 venv
+.venv
 __pycache__
