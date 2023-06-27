@@ -1,8 +1,9 @@
 import json
+from typing import Annotated
 
 import typer
 
-from . import api, db, utils
+import api, db, utils
 
 app = typer.Typer()
 
@@ -24,7 +25,7 @@ def login(username: str, password: str):
 
 
 @app.command()
-def list_apps():
+def list_apps(format_json: Annotated[bool, typer.Option(default=False)] = False):
     err, token, valid_from = db.get_token()
     if err:
         print(f"Couldn't list apps: {err}\nDid you login?")
@@ -36,11 +37,15 @@ def list_apps():
     if err:
         print(f"Could not fetch apps: {err}")
         return
-    print(json.dumps(apps, indent=2))
+    if format_json:
+        print(json.dumps(apps, indent=2))
+        return
+    for app in apps:
+        print(app["Name"])
 
 
 @app.command()
-def list_envs(app: str):
+def list_envs(app: str, format_json: Annotated[bool, typer.Option(default=False)] = False):
     err, token, valid_from = db.get_token()
     if err:
         print(f"Couldn't list envs: {err}\nDid you login?")
@@ -52,7 +57,11 @@ def list_envs(app: str):
     if err:
         print(f"Could not fetch envs: {err}")
         return
-    print(json.dumps(envs, indent=2))
+    if format_json:
+        print(json.dumps(envs, indent=2))
+        return
+    for env in envs:
+        print(env["URI"])
 
 
 @app.command()
