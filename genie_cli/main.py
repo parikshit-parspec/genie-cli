@@ -45,7 +45,9 @@ def list_apps(format_json: Annotated[bool, typer.Option(default=False)] = False)
 
 
 @app.command()
-def list_envs(app: str, format_json: Annotated[bool, typer.Option(default=False)] = False):
+def list_envs(
+    app: str, format_json: Annotated[bool, typer.Option(default=False)] = False
+):
     err, token, valid_from = db.get_token()
     if err:
         print(f"Couldn't list envs: {err}\nDid you login?")
@@ -78,6 +80,22 @@ def display_env(app: str, tag: str):
         print(f"Could not fetch env: {err}")
         return
     print(text)
+
+
+@app.command()
+def add_app(app: str):
+    err, token, valid_from = db.get_token()
+    if err:
+        print(f"Couldn't add app: {err}\nDid you login?")
+        return
+    if utils.is_token_expired(valid_from):
+        print(f"Your session has expired, please login again!")
+        return
+    err = api.add_app(token, app)
+    if err:
+        print(f"Could not add app: {err}")
+        return
+    print(f"Added new app: {app}")
 
 
 @app.command()

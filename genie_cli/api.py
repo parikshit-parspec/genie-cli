@@ -19,6 +19,14 @@ def list_apps(token: str):
     return False, response.json()
 
 
+def add_app(token: str, app: str):
+    auth_header = {"Authorization": f"Bearer {token}"}
+    response = requests.post(GENIE_URL + f"apps/{app}", headers=auth_header)
+    if response.status_code != requests.codes["created"]:
+        return response.status_code
+    return False
+
+
 def list_envs(token: str, app: str):
     auth_header = {"Authorization": f"Bearer {token}"}
     response = requests.get(GENIE_URL + f"apps/{app}/envs", headers=auth_header)
