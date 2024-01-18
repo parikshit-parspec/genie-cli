@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "genie-cli"
-version = "1.2.0"
+version = "1.2.1"
 description = "A CLI for interacting with EnvGenie"
 authors = ["Parikshit Misra <98179308+parikshit-parspec@users.noreply.github.com>"]
 readme = "README.md"
